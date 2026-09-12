@@ -32,7 +32,11 @@ export default async function AdminPage() {
           submissions · {claims.length} claims
         </p>
         <p className="mt-2 text-xs text-muted">
-          Bulk hero CSV: <code>npm run import:listings</code>. Status{" "}
+          Bulk hero CSV:{" "}
+          <Link href="/admin/import" className="text-sea-deep hover:underline">
+            /admin/import
+          </Link>{" "}
+          (same mapping as <code>npm run import:listings</code>). Status{" "}
           <code>candidate</code> / <code>ready</code> publish to the public directory.
         </p>
       </header>
@@ -40,9 +44,14 @@ export default async function AdminPage() {
       <section>
         <div className="flex items-center justify-between">
           <h2 className="font-display text-2xl text-navy">Listings</h2>
-          <Link href="/admin/listings/new" className="text-sm text-sea-deep hover:underline">
-            New listing
-          </Link>
+          <div className="flex gap-4 text-sm">
+            <Link href="/admin/import" className="text-sea-deep hover:underline">
+              Import CSV
+            </Link>
+            <Link href="/admin/listings/new" className="text-sea-deep hover:underline">
+              New listing
+            </Link>
+          </div>
         </div>
         <div className="mt-4 overflow-x-auto rounded-2xl border border-navy/10 bg-white">
           <table className="min-w-full text-left text-sm">

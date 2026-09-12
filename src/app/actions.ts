@@ -10,10 +10,28 @@ import {
   isValidAdminPassword,
   requireAdmin,
 } from "@/lib/admin";
+import {
+  importListingsFromCsv,
+  isCsvUpload,
+  MAX_IMPORT_CSV_BYTES,
+  summarizeImport,
+} from "@/lib/import-listings";
 import { normalizeListingStatus } from "@/lib/listing-status";
 import { prisma } from "@/lib/prisma";
 
 export type ActionState = { ok: boolean; error?: string; message?: string } | null;
+
+export type ImportActionState = {
+  ok: boolean;
+  error?: string;
+  message?: string;
+  created?: number;
+  updated?: number;
+  skipped?: number;
+  errors?: string[];
+  warnings?: string[];
+  dryRun?: boolean;
+} | null;
 
 function readString(formData: FormData, key: string) {
   return String(formData.get(key) ?? "").trim();
@@ -207,6 +225,67 @@ function slugify(value: string) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "")
     .slice(0, 80);
+}
+
+export async function importListingsCsv(
+  _prev: ImportActionState,
+  formData: FormData,
+): Promise<ImportActionState> {
+  await requireAdmin();
+
+  const file = formData.get("file");
+  if (!(file instanceof File) || file.size === 0) {
+    return { ok: false, error: "Choose a CSV file." };
+  }
+  if (file.size > MAX_IMPORT_CSV_BYTES) {
+    return { ok: false, error: "CSV is too large (2 MB max)." };
+  }
+  if (!isCsvUpload(file)) {
+    return { ok: false, error: "Upload a .csv (or .tsv) file." };
+  }
+
+  const dryRun = formData.get("dryRun") === "on";
+  const insertOnly = formData.get("insertOnly") === "on";
+
+  let csvText: string;
+  try {
+    csvText = await file.text();
+  } catch {
+    return { ok: false, error: "Could not read that file." };
+  }
+
+  try {
+    const result = await importListingsFromCsv(csvText, {
+      dryRun,
+      insertOnly,
+      createDestinations: true,
+      prisma,
+    });
+
+    if (!dryRun) {
+      revalidatePath("/");
+      revalidatePath("/guides");
+      revalidatePath("/lodges");
+      revalidatePath("/destinations");
+      revalidatePath("/admin");
+    }
+
+    return {
+      ok: true,
+      message: summarizeImport(result, dryRun),
+      created: result.created.length,
+      updated: result.updated.length,
+      skipped: result.skipped.length,
+      errors: result.errors,
+      warnings: result.warnings,
+      dryRun,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      error: error instanceof Error ? error.message : "Import failed.",
+    };
+  }
 }
 
 export async function saveListing(

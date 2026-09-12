@@ -31,6 +31,7 @@ Interim brand: typographic wordmark **FishTheFlats**, tide navy / sand / sea-gla
 | `/last-minute` | Openings ≤30 days + Beehiiv subscribe + trip preferences |
 | `/about` | What the product is (and is not) |
 | `/admin` | Password-gated CRUD (`ADMIN_PASSWORD`) |
+| `/admin/import` | Signed-in CSV upsert (same logic as `npm run import:listings`) |
 
 ## Local setup
 
@@ -92,7 +93,9 @@ Then optionally load **sample** data (dev / empty staging only — this **wipes*
 npm run seed
 ```
 
-To load a curated hero CSV **without** wiping (production or staging), use the importer. The real ops-folder sheet is not in git; [`data/hero-seed.sample.csv`](./data/hero-seed.sample.csv) shows the expected columns. Status values `candidate` and `ready` publish.
+To load a curated hero CSV **without** wiping (production or staging), upload it at **`/admin/import`** while signed in with `ADMIN_PASSWORD`. That path uses the production `DATABASE_URL` already on Vercel — do not copy the URL off the project. The real ops-folder sheet is not in git; [`data/hero-seed.sample.csv`](./data/hero-seed.sample.csv) shows the expected columns. Status values `candidate` and `ready` publish.
+
+The CLI still works on a machine that already has the database URL:
 
 ```bash
 npm run import:listings -- --dry-run data/hero-seed.sample.csv

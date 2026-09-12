@@ -25,6 +25,9 @@ export default async function AdminConsoleLayout({
           <Link href="/admin/listings/new" className="text-navy-soft hover:text-navy">
             New listing
           </Link>
+          <Link href="/admin/import" className="text-navy-soft hover:text-navy">
+            Import CSV
+          </Link>
         </div>
         <form action={logoutAdmin}>
           <button type="submit" className="text-muted hover:text-navy">
