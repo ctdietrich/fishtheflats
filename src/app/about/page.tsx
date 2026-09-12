@@ -18,7 +18,8 @@ export default function AboutPage() {
       />
       <section className="mx-auto max-w-3xl space-y-8 px-5 py-14 text-base leading-8 text-navy-soft">
         <p>
-          The interim mark is Concept C — a minimal tarpon,{" "}
+          The interim mark is Concept C — the illustrated tarpon lockup and circular icon from
+          the brand board,{" "}
           <span className="font-display text-navy">fishtheflats.com</span> in weathered teal and
           deep navy, cream paper, and the line {site.brandTagline.toLowerCase()}. The product is
           still the desk: curated water, honest bios, and a direct inquire path.

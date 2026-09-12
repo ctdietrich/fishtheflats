@@ -31,10 +31,18 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/40 via-navy/50 to-navy-deep" />
         <div className="relative mx-auto max-w-6xl px-5 py-24 md:py-32">
           <p className="text-xs uppercase tracking-[0.28em] text-sea">{site.brandTagline}</p>
-          <h1 className="mt-4 max-w-4xl font-display text-5xl leading-[1.05] md:text-7xl">
-            <span className="text-sand">fish</span>
-            <span className="text-cream">the</span>
-            <span className="text-sand">flats.com</span>
+          <h1 className="mt-5 max-w-xl">
+            <span className="inline-flex rounded-3xl bg-cream/95 px-5 py-4 md:px-7 md:py-5">
+              <Image
+                src="/brand/wordmark.png"
+                alt="fishtheflats.com"
+                width={1400}
+                height={868}
+                className="h-auto w-full max-w-md md:max-w-lg"
+                priority
+                unoptimized
+              />
+            </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-sand/85">{site.tagline}</p>
           <p className="mt-3 max-w-2xl text-base leading-7 text-sand/70">
