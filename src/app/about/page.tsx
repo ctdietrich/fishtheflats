@@ -38,7 +38,7 @@ export default function AboutPage() {
               <Link href="/last-minute" className="underline">
                 Last-Minute Flats
               </Link>{" "}
-              story, not a checkout flow.
+              story on Beehiiv — not a checkout flow.
             </p>
           </div>
         </div>

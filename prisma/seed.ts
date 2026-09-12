@@ -511,7 +511,16 @@ async function main() {
   await prisma.lastMinuteOpening.createMany({ data: openings });
 
   await prisma.newsletterSignup.create({
-    data: { email: "angler@example.com", name: "Sample Angler" },
+    data: {
+      email: "angler@example.com",
+      name: "Sample Angler",
+      destination: "andros",
+      species: "Bonefish",
+      budgetBand: "6-10k",
+      partySize: "2",
+      flexible30: true,
+      source: "seed",
+    },
   });
 
   console.log(

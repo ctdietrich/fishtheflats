@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { subscribeNewsletter } from "@/app/actions";
-import { ActionForm } from "@/components/FormStatus";
+import { BeehiivEmbed } from "@/components/BeehiivEmbed";
+import { NewsletterSignupForm } from "@/components/NewsletterSignup";
 import { PageHero } from "@/components/PageHero";
 import { listingPath, typeLabel } from "@/lib/config";
-import { getPublishedOpenings } from "@/lib/listings";
+import { getDestinations, getPublishedOpenings } from "@/lib/listings";
 
 export const metadata: Metadata = {
   title: "Last-Minute Flats",
   description:
-    "Lodge openings inside 30 days for flexible saltwater fly anglers. Subscribe to the Last-Minute Flats newsletter.",
+    "Lodge openings inside 30 days for flexible saltwater fly anglers. Subscribe to Last-Minute Flats on Beehiiv.",
 };
-
-const field =
-  "mt-1 w-full rounded-lg border border-navy/15 bg-white px-3 py-2 outline-none focus:border-sea";
 
 function formatRange(start: Date, end: Date) {
   const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
@@ -21,14 +18,17 @@ function formatRange(start: Date, end: Date) {
 }
 
 export default async function LastMinutePage() {
-  const openings = await getPublishedOpenings();
+  const [openings, destinations] = await Promise.all([
+    getPublishedOpenings(),
+    getDestinations(),
+  ]);
 
   return (
     <main>
       <PageHero
-        kicker="Newsletter"
+        kicker="Beehiiv newsletter"
         title="Last-Minute Flats"
-        lede="Lodge rooms and skiffs that come free inside 30 days. For flexible anglers — not for people who need a year of calendar theater."
+        lede="Lodge rooms and skiffs that come free inside 30 days. The list of record is Beehiiv. Trip preferences stay on the desk so we know which water, species, and party you can move for."
       />
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-12 lg:grid-cols-5">
         <div className="lg:col-span-3">
@@ -61,27 +61,23 @@ export default async function LastMinutePage() {
             ) : null}
           </div>
         </div>
-        <aside className="h-fit rounded-2xl bg-navy p-6 text-sand-light lg:col-span-2">
-          <h2 className="font-display text-3xl">Get the list</h2>
-          <p className="mt-3 text-sm leading-6 text-sand/75">
-            One email when a lodge releases space. No booking engine, no drip campaign — just the
-            openings.
-          </p>
-          <ActionForm
-            action={subscribeNewsletter}
-            className="mt-6 space-y-4"
-            submitLabel="Join Last-Minute Flats"
-            variant="sand"
-          >
-            <label className="block text-sm">
-              Name
-              <input name="name" className={field} />
-            </label>
-            <label className="block text-sm">
-              Email
-              <input name="email" type="email" required className={field} />
-            </label>
-          </ActionForm>
+        <aside className="h-fit space-y-6 lg:col-span-2">
+          <BeehiivEmbed />
+          <div className="rounded-2xl bg-navy p-6 text-sand-light">
+            <h2 className="font-display text-3xl">Trip preferences</h2>
+            <p className="mt-3 text-sm leading-6 text-sand/75">
+              Stored on the directory desk (and mapped to Beehiiv custom fields when you add them
+              on the publication). Beehiiv remains the mailing list.
+            </p>
+            <div className="mt-6">
+              <NewsletterSignupForm
+                destinations={destinations}
+                source="last-minute"
+                defaultFlexible
+                variant="navy"
+              />
+            </div>
+          </div>
         </aside>
       </section>
     </main>

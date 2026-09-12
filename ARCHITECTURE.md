@@ -7,7 +7,7 @@ FishTheFlats is a **vertical directory**: two listing types, a destination taxon
 ```
 Demand  →  browse destinations / types / species  →  inquire on the listing
 Supply  →  submit or claim  →  editorial review in /admin  →  published listing
-Ops     →  last-minute openings (≤30 days) + newsletter signups
+Ops     →  last-minute openings (≤30 days) + Beehiiv list + local preference rows
 ```
 
 There is no payments layer and no availability engine. The product is the catalog and the desk.
@@ -32,7 +32,7 @@ Defined in `prisma/schema.prisma`:
   - `sourceUrl`, `claimable`, `contactEmail` / `website`
 - **ListingDestination** — many-to-many
 - **Submission** / **ClaimRequest** — inbound supply
-- **NewsletterSignup** — Last-Minute list
+- **NewsletterSignup** — local subscriber preferences (destination, species, budget, party, ≤30-day flexible). Beehiiv is the mailing list of record.
 - **LastMinuteOpening** — dated lodge (or analog) inventory
 
 To retarget the vertical, you rarely need new tables. You change **labels, types, and seed content**.
@@ -53,10 +53,14 @@ Public pages (RSC)
   → src/lib/listings.ts (published-only queries)
   → Prisma / SQLite
 
-Forms (submit, claim, newsletter, admin)
+Forms (submit, claim, newsletter preferences, admin)
   → src/app/actions.ts (server actions)
   → Prisma
   → revalidatePath / redirect
+
+Last-Minute / newsletter CTAs
+  → Beehiiv publication or embed (`NEXT_PUBLIC_BEEHIIV_*`)
+  → plus local NewsletterSignup preference rows
 ```
 
 `/admin` is a route group (`admin/(console)`) gated by `src/lib/admin.ts`. Login lives at `/admin/login` and is public.
@@ -91,5 +95,5 @@ src/lib/admin.ts              password cookie
 src/app/actions.ts            mutations
 src/app/l/[slug]/page.tsx     listing + JSON-LD
 src/app/admin/(console)/      CRUD + inbox
-src/components/               cards, header, filters
+src/components/               cards, header, filters, Beehiiv embed
 ```

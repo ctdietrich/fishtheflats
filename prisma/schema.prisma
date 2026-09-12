@@ -56,10 +56,16 @@ model ListingDestination {
 }
 
 model NewsletterSignup {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  email       String   @unique
+  name        String?
+  destination String?
+  species     String?
+  budgetBand  String?
+  partySize   String?
+  flexible30  Boolean  @default(true)
+  source      String?
+  createdAt   DateTime @default(now())
 }
 
 model ClaimRequest {

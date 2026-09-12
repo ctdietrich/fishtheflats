@@ -31,23 +31,44 @@ export async function subscribeNewsletter(
 ): Promise<ActionState> {
   const email = readString(formData, "email").toLowerCase();
   const name = readString(formData, "name") || null;
+  const destination = readString(formData, "destination") || null;
+  const species = readString(formData, "species") || null;
+  const budgetBand = readString(formData, "budgetBand") || null;
+  const partySize = readString(formData, "partySize") || null;
+  const source = readString(formData, "source") || "last-minute";
+  const flexible30 = formData.get("flexible30") === "on";
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { ok: false, error: "Please enter a valid email address." };
   }
 
+  const preferences = {
+    name,
+    destination,
+    species,
+    budgetBand,
+    partySize,
+    flexible30,
+    source,
+  };
+
   try {
     await prisma.newsletterSignup.upsert({
       where: { email },
-      update: { name: name ?? undefined },
-      create: { email, name },
+      update: preferences,
+      create: { email, ...preferences },
     });
   } catch {
-    return { ok: false, error: "We could not save that signup. Try again." };
+    return { ok: false, error: "We could not save those preferences. Try again." };
   }
 
   revalidatePath("/admin");
-  return { ok: true, message: "You are on the Last-Minute Flats list." };
+  revalidatePath("/last-minute");
+  return {
+    ok: true,
+    message:
+      "Preferences saved. Confirm on Beehiiv so you are on the Last-Minute Flats list.",
+  };
 }
 
 export async function submitListing(

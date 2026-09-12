@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { updateInboxStatus } from "@/app/actions";
-import { listingPath, typeLabel } from "@/lib/config";
+import { listingPath, site, typeLabel } from "@/lib/config";
 import { prisma } from "@/lib/prisma";
 
 export const metadata = { title: "Admin" };
@@ -117,16 +117,36 @@ export default async function AdminPage() {
 
       <section className="grid gap-8 lg:grid-cols-2">
         <div>
-          <h2 className="font-display text-2xl text-navy">Last-Minute Flats signups</h2>
+          <h2 className="font-display text-2xl text-navy">Subscriber preferences</h2>
+          <p className="mt-1 text-xs text-muted">
+            Local desk copy. The mailing list of record is{" "}
+            <a href={site.beehiiv.publicationUrl} className="underline" target="_blank" rel="noreferrer">
+              Beehiiv
+            </a>
+            .
+          </p>
           <ul className="mt-4 divide-y divide-navy/10 rounded-2xl border border-navy/10 bg-white">
             {signups.map((signup) => (
               <li key={signup.id} className="px-4 py-3 text-sm">
                 <span className="font-medium text-navy">{signup.email}</span>
                 {signup.name ? <span className="text-muted"> · {signup.name}</span> : null}
+                <div className="mt-1 text-xs text-muted">
+                  {[
+                    signup.destination,
+                    signup.species,
+                    site.budgetBands.find((band) => band.key === signup.budgetBand)?.label ??
+                      signup.budgetBand,
+                    site.partySizes.find((size) => size.key === signup.partySize)?.label ??
+                      signup.partySize,
+                    signup.flexible30 ? "≤30-day flexible" : "not 30-day flexible",
+                  ]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </div>
               </li>
             ))}
             {!signups.length ? (
-              <li className="px-4 py-3 text-sm text-muted">No signups yet.</li>
+              <li className="px-4 py-3 text-sm text-muted">No preference rows yet.</li>
             ) : null}
           </ul>
         </div>

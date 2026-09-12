@@ -4,7 +4,7 @@
 
 - **Supply:** independent saltwater fly fishing guides and premium lodges
 - **Demand:** affluent anglers, travel agents, clubs, and corporate trips
-- **Last-Minute Flats:** newsletter + landing page for lodge openings inside 30 days
+- **Last-Minute Flats:** [Beehiiv](https://fishtheflats.beehiiv.com/) newsletter + landing page for lodge openings inside 30 days
 
 This repository is the directory application. It is **not** a catch logger, booking engine, or WordPress site.
 
@@ -28,7 +28,7 @@ Interim brand: typographic wordmark **FishTheFlats**, tide navy / sand / sea-gla
 | `/l/[slug]` | Listing detail + JSON-LD |
 | `/submit` | Operator submission |
 | `/claim` | Claim a sourced profile |
-| `/last-minute` | Openings ≤30 days + newsletter signup |
+| `/last-minute` | Openings ≤30 days + Beehiiv subscribe + trip preferences |
 | `/about` | What the product is (and is not) |
 | `/admin` | Password-gated CRUD (`ADMIN_PASSWORD`) |
 
@@ -56,6 +56,25 @@ Seed data uses **@example.com** addresses only and includes 19 sample listings a
 | `DATABASE_URL` | SQLite file locally, e.g. `file:./dev.db`. Use a Postgres URL in production. |
 | `ADMIN_PASSWORD` | Shared password for `/admin` |
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL for metadata, sitemap, and JSON-LD |
+| `NEXT_PUBLIC_BEEHIIV_URL` | Beehiiv publication (default `https://fishtheflats.beehiiv.com`) |
+| `NEXT_PUBLIC_BEEHIIV_SUBSCRIBE_URL` | Subscribe deep-link (default `…/subscribe`) |
+| `NEXT_PUBLIC_BEEHIIV_EMBED_URL` | Optional Beehiiv embed iframe/src from Subscribe forms. Empty = placeholder slot that links to the publication. |
+
+## Newsletter (Beehiiv)
+
+Beehiiv is the **list of record**. The directory still stores subscriber **preferences** locally (`NewsletterSignup`) so the desk knows destination, species, budget band, party size, and ≤30-day flexibility.
+
+Map those to Beehiiv custom fields on the publication:
+
+| Local column | Beehiiv custom field |
+| --- | --- |
+| `destination` | `destination` |
+| `species` | `species` |
+| `budgetBand` | `budget_band` |
+| `partySize` | `party_size` |
+| `flexible30` | `flexible_30` |
+
+When a Beehiiv subscribe form exists, paste its embed URL into `NEXT_PUBLIC_BEEHIIV_EMBED_URL`. Until then, `/last-minute` and homepage CTAs deep-link to the live publication.
 
 ## Scripts
 

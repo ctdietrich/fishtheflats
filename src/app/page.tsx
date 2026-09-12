@@ -3,6 +3,7 @@ import Link from "next/link";
 import { DestinationCard } from "@/components/DestinationCard";
 import { JsonLd } from "@/components/JsonLd";
 import { ListingCard } from "@/components/ListingCard";
+import { BeehiivEmbed } from "@/components/BeehiivEmbed";
 import { site } from "@/lib/config";
 import { organizationJsonLd } from "@/lib/jsonld";
 import { getDestinations, getPublishedListings, getPublishedOpenings } from "@/lib/listings";
@@ -123,26 +124,38 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {openings.length ? (
-        <section className="bg-navy-soft text-sand-light">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-5 py-12">
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-sea">Last-Minute Flats</p>
-              <h2 className="mt-2 font-display text-3xl">Lodge openings inside 30 days</h2>
-              <p className="mt-2 max-w-xl text-sm text-sand/75">
-                {openings.length} published openings right now. The newsletter is for flexible
-                anglers who can move when a room and a skiff come free.
-              </p>
+      <section className="bg-navy-soft text-sand-light">
+        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 lg:grid-cols-2 lg:items-center">
+          <div>
+            <p className="text-xs uppercase tracking-[0.2em] text-sea">Last-Minute Flats · Beehiiv</p>
+            <h2 className="mt-2 font-display text-3xl">Lodge openings inside 30 days</h2>
+            <p className="mt-2 max-w-xl text-sm text-sand/75">
+              {openings.length
+                ? `${openings.length} published openings on the board right now.`
+                : "The board is quiet this week."}{" "}
+              The mailing list lives on Beehiiv. Set destination, species, budget, and party size
+              on the Last-Minute page so the desk knows who can move.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/last-minute"
+                className="rounded-full bg-sand px-5 py-2.5 text-sm text-navy hover:bg-white"
+              >
+                See openings & preferences
+              </Link>
+              <a
+                href={site.beehiiv.subscribeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-sand/40 px-5 py-2.5 text-sm text-sand-light hover:bg-white/10"
+              >
+                Subscribe on Beehiiv
+              </a>
             </div>
-            <Link
-              href="/last-minute"
-              className="rounded-full bg-sand px-5 py-2.5 text-sm text-navy hover:bg-white"
-            >
-              See openings & subscribe
-            </Link>
           </div>
-        </section>
-      ) : null}
+          <BeehiivEmbed compact />
+        </div>
+      </section>
     </main>
   );
 }

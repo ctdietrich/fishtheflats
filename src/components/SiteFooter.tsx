@@ -27,6 +27,11 @@ export function SiteFooter() {
             <li>
               <Link href="/last-minute">Last-Minute Flats</Link>
             </li>
+            <li>
+              <a href={site.beehiiv.subscribeUrl} target="_blank" rel="noreferrer">
+                Beehiiv newsletter
+              </a>
+            </li>
           </ul>
         </div>
         <div>
