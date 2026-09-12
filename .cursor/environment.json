@@ -1,0 +1,11 @@
+{
+  "name": "Fish the Flats",
+  "install": "npm ci",
+  "terminals": [
+    {
+      "name": "dev-server",
+      "command": "npm start"
+    }
+  ],
+  "ports": [3000]
+}

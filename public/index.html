@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fish the Flats</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎣</text></svg>" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__inner">
+        <h1>🎣 Fish the Flats</h1>
+        <p>Log your saltwater flats catches and track your best days on the water.</p>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <h2>Log a catch</h2>
+        <form id="catch-form" class="form">
+          <label>
+            Species
+            <select name="species" id="species" required></select>
+          </label>
+          <label>
+            Length (inches)
+            <input type="number" name="lengthIn" id="lengthIn" min="1" max="300" step="0.1" required />
+          </label>
+          <label>
+            Spot
+            <input type="text" name="spot" id="spot" placeholder="e.g. Islamorada oceanside" required />
+          </label>
+          <label>
+            Angler
+            <input type="text" name="angler" id="angler" placeholder="Your name (optional)" />
+          </label>
+          <button type="submit">Log catch</button>
+          <p id="form-error" class="error" role="alert"></p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Stats</h2>
+        <div id="stats" class="stats">
+          <div class="stat">
+            <span class="stat__value" id="stat-total">0</span>
+            <span class="stat__label">catches logged</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value" id="stat-longest">–</span>
+            <span class="stat__label">longest catch</span>
+          </div>
+        </div>
+        <ul id="species-breakdown" class="breakdown"></ul>
+      </section>
+
+      <section class="panel panel--wide">
+        <h2>Recent catches</h2>
+        <ul id="catch-list" class="catches"></ul>
+        <p id="empty-state" class="empty">No catches yet. Log your first one!</p>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

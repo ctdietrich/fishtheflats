@@ -1,0 +1,28 @@
+{
+  "name": "fishtheflats",
+  "version": "0.1.0",
+  "description": "Fish the Flats - a simple app for logging saltwater flats fishing catches.",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "jest --runInBand"
+  },
+  "keywords": [
+    "fishing",
+    "flats",
+    "express"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
