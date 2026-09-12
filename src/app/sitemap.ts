@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl, listingPath } from "@/lib/config";
+import { publishedListingWhere } from "@/lib/listing-status";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -7,7 +8,7 @@ export const dynamic = "force-dynamic";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [listings, destinations] = await Promise.all([
     prisma.listing.findMany({
-      where: { status: "published" },
+      where: publishedListingWhere,
       select: { slug: true, updatedAt: true },
     }),
     prisma.destination.findMany({ select: { slug: true } }),

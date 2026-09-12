@@ -31,6 +31,10 @@ export default async function AdminPage() {
           {listings.length} listings · {signups.length} newsletter signups · {submissions.length}{" "}
           submissions · {claims.length} claims
         </p>
+        <p className="mt-2 text-xs text-muted">
+          Bulk hero CSV: <code>npm run import:listings</code>. Status{" "}
+          <code>candidate</code> / <code>ready</code> publish to the public directory.
+        </p>
       </header>
 
       <section>

@@ -86,11 +86,20 @@ npx prisma migrate deploy
 
 If `migrate deploy` fails on a pooled host (PgBouncer / Neon pooler), rerun it with the provider’s **direct / unpooled** connection string as `DATABASE_URL` for that command only.
 
-Then optionally load sample data (dev / empty staging only — this wipes listing tables):
+Then optionally load **sample** data (dev / empty staging only — this **wipes** listing tables):
 
 ```bash
 npm run seed
 ```
+
+To load a curated hero CSV **without** wiping (production or staging), use the importer. The real ops-folder sheet is not in git; [`data/hero-seed.sample.csv`](./data/hero-seed.sample.csv) shows the expected columns. Status values `candidate` and `ready` publish.
+
+```bash
+npm run import:listings -- --dry-run data/hero-seed.sample.csv
+DATABASE_URL="postgresql://…" npm run import:listings -- /path/to/hero.csv
+```
+
+See [docs/import-listings.md](./docs/import-listings.md).
 
 ## Newsletter (Beehiiv)
 
@@ -120,8 +129,9 @@ Deep-link fallback: [fishtheflats.beehiiv.com](https://fishtheflats.beehiiv.com/
 npm run dev         # Next.js dev server
 npm run build       # prisma generate + production build
 npm run start       # serve the production build
-npm run db:deploy   # prisma migrate deploy (production)
-npm run seed        # reset sample destinations, listings, openings
+npm run db:deploy         # prisma migrate deploy (production)
+npm run seed              # reset sample destinations, listings, openings (destructive)
+npm run import:listings   # upsert listings from a CSV (see docs/import-listings.md)
 npm run lint
 ```
 

@@ -46,8 +46,10 @@ export function ListingForm({
         <label className="text-sm">
           Status
           <select name="status" defaultValue={listing?.status ?? "draft"} className={field}>
-            <option value="draft">draft</option>
+            <option value="draft">draft — hidden from the directory</option>
             <option value="published">published</option>
+            <option value="candidate">candidate — publishes (hero import)</option>
+            <option value="ready">ready — publishes (hero import)</option>
           </select>
         </label>
         <label className="text-sm md:col-span-2">

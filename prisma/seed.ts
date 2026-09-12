@@ -1,5 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 
+// Destructive sample data. For curated hero CSVs use `npm run import:listings`
+// (see docs/import-listings.md). Seed wipes listings; the importer upserts.
+
 const prisma = new PrismaClient();
 
 const daysFromNow = (days: number) => {
@@ -475,7 +478,7 @@ async function main() {
   }
 
   const publishedLodges = await prisma.listing.findMany({
-    where: { type: "lodge", status: "published" },
+    where: { type: "lodge", status: { in: ["published", "candidate", "ready"] } },
     select: { id: true, slug: true },
   });
 

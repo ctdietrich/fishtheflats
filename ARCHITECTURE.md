@@ -29,6 +29,7 @@ Defined in `prisma/schema.prisma`:
 - **Listing** — `guide` or `lodge` (or whatever types you configure)
   - `species[]`, `photos[]` (JSON)
   - `featured`, `verified`, `status` (`draft` \| `published`)
+  - CSV / admin aliases `candidate` and `ready` normalize to `published` (`src/lib/listing-status.ts`)
   - `sourceUrl`, `claimable`, `contactEmail` / `website`
 - **ListingDestination** — many-to-many
 - **Submission** / **ClaimRequest** — inbound supply
@@ -89,9 +90,13 @@ Add those only when the directory is earning its keep.
 
 ```
 prisma/schema.prisma          models
-prisma/seed.ts                15–20 sample listings
+prisma/seed.ts                15–20 sample listings (destructive)
+scripts/import-listings.ts    curated CSV upsert (hero ops)
+data/hero-seed.sample.csv     expected import columns
+docs/import-listings.md       column aliases + production runbook
 src/lib/config.ts             brand + types (clone here first)
 src/lib/listings.ts           public queries
+src/lib/listing-status.ts     published aliases (candidate/ready)
 src/lib/admin.ts              password cookie
 src/app/actions.ts            mutations
 src/app/l/[slug]/page.tsx     listing + JSON-LD
