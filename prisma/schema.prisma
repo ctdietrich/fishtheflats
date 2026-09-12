@@ -1,0 +1,98 @@
+// FishTheFlats listing directory.
+// SQLite locally; switch provider + DATABASE_URL for Postgres.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Destination {
+  id          String               @id @default(cuid())
+  slug        String               @unique
+  name        String
+  region      String
+  country     String
+  description String
+  heroImage   String?
+  listings    ListingDestination[]
+}
+
+model Listing {
+  id           String               @id @default(cuid())
+  slug         String               @unique
+  type         String
+  name         String
+  tagline      String?
+  bio          String
+  contactEmail String
+  website      String?
+  phone        String?
+  photos       Json
+  species      Json
+  featured     Boolean              @default(false)
+  verified     Boolean              @default(false)
+  status       String               @default("draft")
+  sourceUrl    String?
+  claimable    Boolean              @default(true)
+  claimedAt    DateTime?
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  destinations ListingDestination[]
+  claims       ClaimRequest[]
+  openings     LastMinuteOpening[]
+}
+
+model ListingDestination {
+  listingId     String
+  destinationId String
+  listing       Listing     @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  destination   Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+
+  @@id([listingId, destinationId])
+}
+
+model NewsletterSignup {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+}
+
+model ClaimRequest {
+  id        String   @id @default(cuid())
+  listingId String
+  listing   Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  name      String
+  email     String
+  message   String
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+}
+
+model Submission {
+  id           String   @id @default(cuid())
+  type         String
+  name         String
+  email        String
+  website      String?
+  destinations String
+  species      String
+  bio          String
+  status       String   @default("pending")
+  createdAt    DateTime @default(now())
+}
+
+model LastMinuteOpening {
+  id        String   @id @default(cuid())
+  listingId String
+  listing   Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  startDate DateTime
+  endDate   DateTime
+  notes     String?
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
