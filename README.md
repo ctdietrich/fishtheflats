@@ -14,7 +14,7 @@ Interim brand: typographic wordmark **FishTheFlats**, tide navy / sand / sea-gla
 
 - Next.js App Router + TypeScript
 - Tailwind CSS
-- Prisma + SQLite (Postgres-ready — change the Prisma `provider` and `DATABASE_URL`)
+- Prisma + PostgreSQL (`DATABASE_URL`)
 
 ## Pages
 
@@ -34,8 +34,11 @@ Interim brand: typographic wordmark **FishTheFlats**, tide navy / sand / sea-gla
 
 ## Local setup
 
+Postgres must be running and reachable at `DATABASE_URL` (local Postgres, Neon, Vercel Postgres, or similar).
+
 ```bash
 cp .env.example .env
+# Create the database, then point DATABASE_URL at it
 npm install
 npx prisma migrate dev
 npm run seed
@@ -53,13 +56,41 @@ Seed data uses **@example.com** addresses only and includes 19 sample listings a
 
 | Variable | Purpose |
 | --- | --- |
-| `DATABASE_URL` | SQLite file locally, e.g. `file:./dev.db`. Use a Postgres URL in production. |
-| `ADMIN_PASSWORD` | Shared password for `/admin` |
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL for metadata, sitemap, and JSON-LD |
+| `DATABASE_URL` | **Required.** Postgres connection string |
+| `ADMIN_PASSWORD` | **Required** in production. Shared password for `/admin` |
+| `NEXT_PUBLIC_SITE_URL` | Optional. Canonical site URL for metadata, sitemap, and JSON-LD |
 | `NEXT_PUBLIC_BEEHIIV_URL` | Beehiiv publication (default `https://fishtheflats.beehiiv.com`) |
 | `NEXT_PUBLIC_BEEHIIV_SUBSCRIBE_URL` | Subscribe deep-link (default `…/subscribe`) |
 | `NEXT_PUBLIC_BEEHIIV_EMBED_URL` / `BEEHIIV_EMBED_URL` | Publication homepage default (`https://fishtheflats.beehiiv.com`) |
 | `NEXT_PUBLIC_BEEHIIV_FORM_ID` | Official subscribe form id (`1ee62311-bba2-433a-aecc-2518b838ac08`) |
+
+## Deploy on Vercel
+
+Set these project environment variables (Production, and Preview if you want those deploys to hit a database):
+
+| Variable | Required | Notes |
+| --- | --- | --- |
+| `DATABASE_URL` | Yes | Postgres URL from Vercel Postgres, Neon, Supabase, or any host. Use a pooled URL for the app if the provider offers one. |
+| `ADMIN_PASSWORD` | Yes | Shared `/admin` password |
+| `NEXT_PUBLIC_SITE_URL` | No | e.g. `https://fishtheflats.com`. If unset, the app falls back to `VERCEL_URL` or `https://fishtheflats.com` |
+
+Build already runs `prisma generate && next build`. Database pages are `force-dynamic`, so Next does not prerender them at build time. `DATABASE_URL` must still be present so Prisma can generate the client; a missing or invalid database fails at **runtime**, not during compile.
+
+Do **not** run migrations during the Vercel build. After the first deploy (and after later schema changes), apply migrations against production:
+
+```bash
+# From a machine that can reach the production database
+npx prisma migrate deploy
+# or: npm run db:deploy
+```
+
+If `migrate deploy` fails on a pooled host (PgBouncer / Neon pooler), rerun it with the provider’s **direct / unpooled** connection string as `DATABASE_URL` for that command only.
+
+Then optionally load sample data (dev / empty staging only — this wipes listing tables):
+
+```bash
+npm run seed
+```
 
 ## Newsletter (Beehiiv)
 
@@ -86,10 +117,11 @@ Deep-link fallback: [fishtheflats.beehiiv.com](https://fishtheflats.beehiiv.com/
 ## Scripts
 
 ```bash
-npm run dev      # Next.js dev server
-npm run build    # prisma generate + production build
-npm run start    # serve the production build
-npm run seed     # reset sample destinations, listings, openings
+npm run dev         # Next.js dev server
+npm run build       # prisma generate + production build
+npm run start       # serve the production build
+npm run db:deploy   # prisma migrate deploy (production)
+npm run seed        # reset sample destinations, listings, openings
 npm run lint
 ```
 

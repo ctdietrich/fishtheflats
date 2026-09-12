@@ -7,6 +7,8 @@ import { PageHero } from "@/components/PageHero";
 import { destinationJsonLd } from "@/lib/jsonld";
 import { getDestinationBySlug, getDestinations, getPublishedListings } from "@/lib/listings";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: {

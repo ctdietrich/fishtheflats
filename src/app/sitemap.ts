@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { absoluteUrl, listingPath } from "@/lib/config";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [listings, destinations] = await Promise.all([
     prisma.listing.findMany({

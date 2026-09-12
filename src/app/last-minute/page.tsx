@@ -6,6 +6,8 @@ import { PageHero } from "@/components/PageHero";
 import { listingPath, typeLabel } from "@/lib/config";
 import { getDestinations, getPublishedOpenings } from "@/lib/listings";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Last-Minute Flats",
   description:

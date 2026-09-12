@@ -3,6 +3,8 @@ import { DestinationCard } from "@/components/DestinationCard";
 import { PageHero } from "@/components/PageHero";
 import { getDestinations } from "@/lib/listings";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Destinations",
   description:

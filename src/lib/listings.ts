@@ -49,9 +49,9 @@ export async function getPublishedListings(filters?: {
   }
   if (filters?.query) {
     where.OR = [
-      { name: { contains: filters.query } },
-      { tagline: { contains: filters.query } },
-      { bio: { contains: filters.query } },
+      { name: { contains: filters.query, mode: "insensitive" } },
+      { tagline: { contains: filters.query, mode: "insensitive" } },
+      { bio: { contains: filters.query, mode: "insensitive" } },
     ];
   }
 
