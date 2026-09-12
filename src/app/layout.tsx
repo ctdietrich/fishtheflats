@@ -33,8 +33,11 @@ export const metadata: Metadata = {
   },
   description: site.description,
   icons: {
-    icon: [{ url: "/brand/icon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/brand/icon.svg" }],
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/brand/icon.png", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png" }],
   },
   openGraph: {
     title: site.name,
