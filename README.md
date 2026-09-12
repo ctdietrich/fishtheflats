@@ -58,7 +58,8 @@ Seed data uses **@example.com** addresses only and includes 19 sample listings a
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL for metadata, sitemap, and JSON-LD |
 | `NEXT_PUBLIC_BEEHIIV_URL` | Beehiiv publication (default `https://fishtheflats.beehiiv.com`) |
 | `NEXT_PUBLIC_BEEHIIV_SUBSCRIBE_URL` | Subscribe deep-link (default `…/subscribe`) |
-| `NEXT_PUBLIC_BEEHIIV_EMBED_URL` | Optional Beehiiv embed iframe/src from Subscribe forms. Empty = placeholder slot that links to the publication. |
+| `NEXT_PUBLIC_BEEHIIV_EMBED_URL` / `BEEHIIV_EMBED_URL` | Publication homepage default (`https://fishtheflats.beehiiv.com`) |
+| `NEXT_PUBLIC_BEEHIIV_FORM_ID` | Official subscribe form id (`1ee62311-bba2-433a-aecc-2518b838ac08`) |
 
 ## Newsletter (Beehiiv)
 
@@ -74,7 +75,13 @@ Map those to Beehiiv custom fields on the publication:
 | `partySize` | `party_size` |
 | `flexible30` | `flexible_30` |
 
-When a Beehiiv subscribe form exists, paste its embed URL into `NEXT_PUBLIC_BEEHIIV_EMBED_URL`. Until then, `/last-minute` and homepage CTAs deep-link to the live publication.
+`/last-minute` and the homepage newsletter CTA load the official Beehiiv subscribe form:
+
+```html
+<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="1ee62311-bba2-433a-aecc-2518b838ac08"></script>
+```
+
+Deep-link fallback: [fishtheflats.beehiiv.com](https://fishtheflats.beehiiv.com/).
 
 ## Scripts
 

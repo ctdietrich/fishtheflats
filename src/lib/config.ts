@@ -39,7 +39,13 @@ export const site = {
     subscribeUrl:
       process.env.NEXT_PUBLIC_BEEHIIV_SUBSCRIBE_URL ??
       "https://fishtheflats.beehiiv.com/subscribe",
-    embedUrl: process.env.NEXT_PUBLIC_BEEHIIV_EMBED_URL ?? "",
+    embedUrl:
+      process.env.NEXT_PUBLIC_BEEHIIV_EMBED_URL ||
+      process.env.BEEHIIV_EMBED_URL ||
+      "https://fishtheflats.beehiiv.com",
+    formId:
+      process.env.NEXT_PUBLIC_BEEHIIV_FORM_ID ?? "1ee62311-bba2-433a-aecc-2518b838ac08",
+    loaderSrc: "https://subscribe-forms.beehiiv.com/v3/loader.js",
     customFields: [
       { local: "destination", beehiiv: "destination", label: "Destination" },
       { local: "species", beehiiv: "species", label: "Species" },
