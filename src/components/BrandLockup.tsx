@@ -32,14 +32,14 @@ export function BrandLockup({
             compact ? "text-[1.65rem] md:text-[1.85rem]" : "text-3xl md:text-4xl"
           }`}
         >
-          <span className={onDark ? "text-sand" : "text-sea"}>fish</span>
-          <span className={onDark ? "text-sand-light" : "text-navy"}>the</span>
-          <span className={onDark ? "text-sand" : "text-sea"}>flats.com</span>
+          <span className={onDark ? "text-sand" : "text-weathered-teal"}>fish</span>
+          <span className={onDark ? "text-cream" : "text-deep-navy"}>the</span>
+          <span className={onDark ? "text-sand" : "text-weathered-teal"}>flats.com</span>
         </span>
         {showTagline ? (
           <span
             className={`mt-1.5 text-[0.62rem] uppercase tracking-[0.18em] [word-spacing:0.28em] md:tracking-[0.22em] ${
-              onDark ? "text-sand/70" : "text-sea"
+              onDark ? "text-sand/70" : "text-weathered-teal"
             }`}
           >
             {site.brandTagline}

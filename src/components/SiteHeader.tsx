@@ -15,7 +15,7 @@ export function SiteHeader({ tone = "light" }: { tone?: "light" | "dark" }) {
   return (
     <header
       className={`relative z-20 border-b ${
-        onDark ? "border-white/10 text-sand-light" : "border-navy/10 bg-foam text-navy"
+        onDark ? "border-white/10 text-sand-light" : "border-deep-navy/10 bg-cream text-deep-navy"
       }`}
     >
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-4">
@@ -27,7 +27,7 @@ export function SiteHeader({ tone = "light" }: { tone?: "light" | "dark" }) {
             <Link
               key={link.href}
               href={link.href}
-              className={onDark ? "hover:text-sand" : "text-navy-soft hover:text-sea"}
+              className={onDark ? "hover:text-sand" : "text-navy-soft hover:text-weathered-teal"}
             >
               {link.label}
             </Link>
@@ -37,7 +37,7 @@ export function SiteHeader({ tone = "light" }: { tone?: "light" | "dark" }) {
             className={`rounded-full px-3 py-1.5 tracking-[0.16em] ${
               onDark
                 ? "bg-sand text-navy hover:bg-white"
-                : "bg-navy text-sand-light hover:bg-navy-soft"
+                : "bg-deep-navy text-sand-light hover:bg-navy-soft"
             }`}
           >
             List with us

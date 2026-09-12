@@ -33,7 +33,7 @@ export default async function HomePage() {
           <p className="text-xs uppercase tracking-[0.28em] text-sea">{site.brandTagline}</p>
           <h1 className="mt-4 max-w-4xl font-display text-5xl leading-[1.05] md:text-7xl">
             <span className="text-sand">fish</span>
-            <span className="text-foam">the</span>
+            <span className="text-cream">the</span>
             <span className="text-sand">flats.com</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-sand/85">{site.tagline}</p>

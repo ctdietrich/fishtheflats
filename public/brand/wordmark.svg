@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 360" role="img" aria-label="fishtheflats.com">
-  <g fill="none" stroke="#0B1F33" stroke-linecap="round" stroke-linejoin="round" transform="translate(150 4)">
+  <g fill="none" stroke="#092A40" stroke-linecap="round" stroke-linejoin="round" transform="translate(150 4)">
     <!-- body -->
     <path
       stroke-width="3.2"
@@ -32,10 +32,10 @@
     <path stroke-width="2.4" d="M78 108 C 62 100 46 90 36 80 C 54 102 66 114 80 118"/>
     <!-- scales -->
     <path stroke-width="1.5" d="M250 86c22 6 44 6 66-4M268 102c24 6 48 6 70-4M286 118c24 6 48 5 68-5M320 78c20 5 40 4 58-4M338 94c22 5 44 5 62-4M356 110c22 5 42 4 58-4M390 72c18 4 34 3 48-4M408 88c18 4 36 4 50-3"/>
-    <circle cx="138" cy="90" r="9" fill="#0B1F33" stroke="#0B1F33"/>
-    <circle cx="141" cy="87.4" r="2.5" fill="#F3EDE2" stroke="none"/>
-    <path stroke="#4F7A7A" stroke-width="2.3" d="M10 150 C 160 166 360 160 560 128"/>
-    <path stroke="#4F7A7A" stroke-width="1.7" d="M40 166 C 190 180 380 172 570 144"/>
+    <circle cx="138" cy="90" r="9" fill="#092A40" stroke="#092A40"/>
+    <circle cx="141" cy="87.4" r="2.5" fill="#F0EADB" stroke="none"/>
+    <path stroke="#5B858B" stroke-width="2.3" d="M10 150 C 160 166 360 160 560 128"/>
+    <path stroke="#5B858B" stroke-width="1.7" d="M40 166 C 190 180 380 172 570 144"/>
   </g>
   <text
     x="550"
@@ -45,6 +45,6 @@
     font-size="78"
     letter-spacing="-1.4"
   >
-    <tspan fill="#4F7A7A">fish</tspan><tspan fill="#0B1F33">the</tspan><tspan fill="#4F7A7A">flats.com</tspan>
+    <tspan fill="#5B858B">fish</tspan><tspan fill="#092A40">the</tspan><tspan fill="#5B858B">flats.com</tspan>
   </text>
 </svg>

@@ -1,32 +1,45 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #0b1f33;
-  --navy-deep: #061018;
-  --navy-soft: #173044;
-  --sand: #c4b59a;
+  --deep-navy: #092a40;
+  --weathered-teal: #5b858b;
+  --sand: #c9bca3;
+  --cream: #f0eadb;
+  --navy-soft: #16384c;
+  --teal-deep: #3f5f64;
   --sand-light: #e8dfd0;
-  --sea: #4f7a7a;
-  --sea-deep: #3a5f5f;
-  --foam: #f3ede2;
-  --ink: #0b1f33;
-  --muted: #5e6b70;
-  --paper: #fff8f0;
+  --cream-light: #fbf8ee;
+  --muted: #5a6e72;
+
+  --navy: var(--deep-navy);
+  --navy-deep: var(--deep-navy);
+  --sea: var(--weathered-teal);
+  --sea-deep: var(--teal-deep);
+  --foam: var(--cream);
+  --ink: var(--deep-navy);
+  --paper: var(--cream-light);
 }
 
 @theme inline {
-  --color-navy: var(--navy);
-  --color-navy-deep: var(--navy-deep);
-  --color-navy-soft: var(--navy-soft);
+  --color-deep-navy: var(--deep-navy);
+  --color-weathered-teal: var(--weathered-teal);
   --color-sand: var(--sand);
+  --color-cream: var(--cream);
+  --color-navy-soft: var(--navy-soft);
+  --color-teal-deep: var(--teal-deep);
   --color-sand-light: var(--sand-light);
-  --color-sea: var(--sea);
-  --color-sea-deep: var(--sea-deep);
-  --color-foam: var(--foam);
-  --color-ink: var(--ink);
+  --color-cream-light: var(--cream-light);
+
+  --color-navy: var(--deep-navy);
+  --color-navy-deep: var(--deep-navy);
+  --color-sea: var(--weathered-teal);
+  --color-sea-deep: var(--teal-deep);
+  --color-foam: var(--cream);
+  --color-ink: var(--deep-navy);
   --color-muted: var(--muted);
-  --color-paper: var(--paper);
-  --color-white: var(--paper);
+  --color-paper: var(--cream-light);
+  --color-white: var(--cream-light);
+
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
 }
@@ -36,8 +49,8 @@ html {
 }
 
 body {
-  background: var(--foam);
-  color: var(--ink);
+  background: var(--cream);
+  color: var(--deep-navy);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -53,6 +66,6 @@ a {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--sea) 40%, white);
-  color: var(--navy-deep);
+  background: color-mix(in srgb, var(--weathered-teal) 40%, white);
+  color: var(--deep-navy);
 }

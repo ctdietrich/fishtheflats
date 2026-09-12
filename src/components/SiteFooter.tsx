@@ -4,7 +4,7 @@ import { site } from "@/lib/config";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-navy/10 bg-navy text-sand-light">
+    <footer className="mt-auto border-t border-navy/10 bg-deep-navy text-sand-light">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <Link href="/" aria-label="FishTheFlats home">
