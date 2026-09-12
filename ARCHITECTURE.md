@@ -91,7 +91,9 @@ Add those only when the directory is earning its keep.
 ```
 prisma/schema.prisma          models
 prisma/seed.ts                15–20 sample listings (destructive)
-scripts/import-listings.ts    curated CSV upsert (hero ops)
+scripts/import-listings.ts    CLI wrapper around the shared importer
+src/lib/import-listings.ts    shared CSV parse + upsert (CLI + /admin/import)
+src/app/admin/(console)/import  ADMIN_PASSWORD-gated CSV upload
 data/hero-seed.sample.csv     expected import columns
 docs/import-listings.md       column aliases + production runbook
 src/lib/config.ts             brand + types (clone here first)
@@ -100,6 +102,6 @@ src/lib/listing-status.ts     published aliases (candidate/ready)
 src/lib/admin.ts              password cookie
 src/app/actions.ts            mutations
 src/app/l/[slug]/page.tsx     listing + JSON-LD
-src/app/admin/(console)/      CRUD + inbox
+src/app/admin/(console)/      CRUD + inbox + CSV import
 src/components/               cards, header, filters, Beehiiv embed
 ```

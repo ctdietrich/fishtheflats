@@ -4,9 +4,24 @@ Use this when a curated hero sheet (often 50+ rows in an ops folder) needs to la
 
 `npm run seed` **deletes** listings, destinations, claims, and openings. Do **not** seed production after a real import.
 
-The owner’s 54-row hero CSV is **not** in this repository. Point the script at that file on the machine that can reach Production `DATABASE_URL`.
+The owner’s 54-row hero CSV is **not** in this repository.
 
-## Quick start
+## Admin upload (production)
+
+On Vercel the app already has `DATABASE_URL`. **Do not copy that URL off the project** to run a laptop import. Sign in with the existing `ADMIN_PASSWORD` session and upload the sheet:
+
+1. Open [`/admin/login`](https://fishtheflats.vercel.app/admin/login) and enter `ADMIN_PASSWORD`.
+2. Go to [`/admin/import`](https://fishtheflats.vercel.app/admin/import).
+3. Choose the hero CSV. Optionally check **Dry run** (counts only) or **Insert only** (skip existing slugs/names).
+4. Submit. The desk shows **created / updated / skipped** counts, plus any row errors or warnings.
+
+`/admin/import` is inside the same `admin/(console)` layout as the rest of the desk. The server action calls `requireAdmin()` before reading the file. There is **no** public or unauthenticated import route.
+
+The upload uses `src/lib/import-listings.ts` — the same parser, aliases, status mapping, and upsert as `npm run import:listings`.
+
+## CLI (local / machines that already have the database URL)
+
+Use this when you already have `DATABASE_URL` on the box (local Postgres, or a URL you did not have to fish out of Vercel for a one-off).
 
 ```bash
 # Preview mapping (no writes). Works even without a database if you only want parse/status checks.
@@ -29,7 +44,7 @@ npm run import:listings -- --dry-run /path/to/hero-candidates.csv
 npm run import:listings -- /path/to/hero-candidates.csv
 ```
 
-Then confirm on [fishtheflats.vercel.app](https://fishtheflats.vercel.app) and `/admin`.
+Then confirm on [fishtheflats.vercel.app](https://fishtheflats.vercel.app) and `/admin`. Prefer **`/admin/import`** for production so `DATABASE_URL` never leaves Vercel.
 
 ## Expected columns
 
