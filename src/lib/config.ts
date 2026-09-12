@@ -1,7 +1,36 @@
+const SITE_URL_FALLBACK = "https://fishtheflats.com";
+
+function toAbsoluteHttpUrl(value?: string | null): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  if (!trimmed) return undefined;
+
+  const withProtocol = /^https?:\/\//i.test(trimmed)
+    ? trimmed
+    : `https://${trimmed.replace(/^\/+/, "")}`;
+
+  try {
+    const url = new URL(withProtocol);
+    if (url.protocol !== "http:" && url.protocol !== "https:") return undefined;
+    if (!url.hostname) return undefined;
+    return url.origin;
+  } catch {
+    return undefined;
+  }
+}
+
+export function resolveSiteUrl(): string {
+  return (
+    toAbsoluteHttpUrl(process.env.NEXT_PUBLIC_SITE_URL) ??
+    toAbsoluteHttpUrl(process.env.VERCEL_URL) ??
+    SITE_URL_FALLBACK
+  );
+}
+
 export const site = {
   name: "FishTheFlats",
   domain: "fishtheflats.com",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://fishtheflats.com",
+  url: resolveSiteUrl(),
   tagline: "The directory for saltwater fly fishing guides and lodges.",
   description:
     "A curated two-sided directory of independent saltwater fly fishing guides and premium lodges — for affluent anglers, travel agents, clubs, and corporate trips.",

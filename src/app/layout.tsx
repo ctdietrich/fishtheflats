@@ -3,8 +3,17 @@ import type { ReactNode } from "react";
 import { Figtree, Fraunces } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { site } from "@/lib/config";
+import { resolveSiteUrl, site } from "@/lib/config";
 import "./globals.css";
+
+function metadataBaseUrl(): URL {
+  const fallback = "https://fishtheflats.com";
+  try {
+    return new URL(resolveSiteUrl());
+  } catch {
+    return new URL(fallback);
+  }
+}
 
 const sans = Figtree({
   variable: "--font-sans",
@@ -17,7 +26,7 @@ const display = Fraunces({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: metadataBaseUrl(),
   title: {
     default: `${site.name} — ${site.tagline}`,
     template: `%s · ${site.name}`,
