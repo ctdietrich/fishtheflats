@@ -8,6 +8,8 @@ import { site } from "@/lib/config";
 import { organizationJsonLd } from "@/lib/jsonld";
 import { getDestinations, getPublishedListings, getPublishedOpenings } from "@/lib/listings";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const [featured, destinations, openings] = await Promise.all([
     getPublishedListings({ featured: true }),

@@ -7,6 +7,8 @@ import { listingPath, typeLabel } from "@/lib/config";
 import { listingJsonLd } from "@/lib/jsonld";
 import { asStringArray, getListingBySlug } from "@/lib/listings";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: {

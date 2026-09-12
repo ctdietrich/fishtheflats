@@ -18,7 +18,7 @@ There is no payments layer and no availability engine. The product is the catalo
 | --- | --- | --- |
 | App | Next.js App Router | File-based pages; metadata + sitemap live next to routes |
 | UI | Tailwind + a small component set | Brand tokens live in `globals.css` |
-| Data | Prisma | SQLite in development; switch `provider` to `postgresql` for production |
+| Data | Prisma | PostgreSQL via `DATABASE_URL` (local or hosted) |
 | Auth | Shared `ADMIN_PASSWORD` cookie | Enough for a one-desk editorial tool |
 
 ## Domain objects
@@ -51,7 +51,7 @@ To retarget the vertical, you rarely need new tables. You change **labels, types
 ```
 Public pages (RSC)
   → src/lib/listings.ts (published-only queries)
-  → Prisma / SQLite
+  → Prisma / PostgreSQL
 
 Forms (submit, claim, newsletter preferences, admin)
   → src/app/actions.ts (server actions)
@@ -65,14 +65,15 @@ Last-Minute / newsletter CTAs
 
 `/admin` is a route group (`admin/(console)`) gated by `src/lib/admin.ts`. Login lives at `/admin/login` and is public.
 
-## Postgres cutover
+## Postgres (Vercel)
 
-1. Set `DATABASE_URL` to a Postgres URL.
-2. In `prisma/schema.prisma`, set `provider = "postgresql"`.
-3. `npx prisma migrate diff` / create a fresh migration (do not reuse the SQLite SQL as-is).
-4. `npx prisma migrate deploy && npm run seed` (or load production copy, not the sample seed).
+The schema provider is `postgresql`. Local and production both use `DATABASE_URL`.
 
-JSON columns (`photos`, `species`) remain portable.
+1. Set `DATABASE_URL` (and `ADMIN_PASSWORD`) on Vercel. `NEXT_PUBLIC_SITE_URL` is optional.
+2. Deploy. Build is `prisma generate && next build`. Data routes are `force-dynamic` so prerender does not query the database.
+3. Post-deploy: `npx prisma migrate deploy` (or `npm run db:deploy`). Then seed only if you want sample data.
+
+JSON columns (`photos`, `species`) map to `JSONB`.
 
 ## Intentionally out of scope
 

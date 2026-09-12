@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "prisma db seed",
+    "db:deploy": "prisma migrate deploy",
     "postinstall": "prisma generate"
   },
   "prisma": {

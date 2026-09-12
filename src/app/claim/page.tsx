@@ -4,6 +4,8 @@ import { ActionForm } from "@/components/FormStatus";
 import { PageHero } from "@/components/PageHero";
 import { getClaimableListings } from "@/lib/listings";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Claim a listing",
   description: "Claim an existing FishTheFlats guide or lodge profile.",
