@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="FishTheFlats">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="FishTheFlats tarpon mark">
   <circle cx="128" cy="128" r="122" fill="#F0EADB" stroke="#092A40" stroke-width="6"/>
   <circle cx="184" cy="68" r="11" fill="#E8DFD0"/>
   <g fill="none" stroke="#5B858B" stroke-linecap="round">
@@ -12,6 +12,7 @@
     <path stroke-width="2.8" d="M82 116c7 12 6 28-2 40"/>
     <path stroke-width="2.6" d="M90 152c10 10 8 22-4 32"/>
     <path stroke-width="2.4" d="M118 106c10-12 24-16 34-8"/>
+    <path stroke-width="1.7" d="M104 128c12 3 24 3 36 0M108 138c14 3 28 2 40-2M136 121c10 2 20 1 28-2"/>
   </g>
   <circle cx="70" cy="126" r="8" fill="#F0EADB" stroke="#092A40" stroke-width="2.5"/>
   <circle cx="70" cy="126" r="3.8" fill="#092A40"/>
