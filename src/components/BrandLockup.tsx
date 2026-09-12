@@ -20,9 +20,9 @@ export function BrandLockup({
       <Image
         src="/brand/icon.svg"
         alt=""
-        width={compact ? 44 : 56}
-        height={compact ? 44 : 56}
-        className={compact ? "h-11 w-11" : "h-14 w-14"}
+        width={compact ? 48 : 56}
+        height={compact ? 48 : 56}
+        className={compact ? "h-12 w-12" : "h-14 w-14"}
         unoptimized
         priority={compact}
       />
@@ -38,7 +38,7 @@ export function BrandLockup({
         </span>
         {showTagline ? (
           <span
-            className={`mt-1.5 text-[0.62rem] uppercase tracking-[0.22em] md:tracking-[0.28em] ${
+            className={`mt-1.5 text-[0.62rem] uppercase tracking-[0.18em] [word-spacing:0.28em] md:tracking-[0.22em] ${
               onDark ? "text-sand/70" : "text-sea"
             }`}
           >
