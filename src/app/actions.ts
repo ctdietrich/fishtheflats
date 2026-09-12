@@ -10,6 +10,7 @@ import {
   isValidAdminPassword,
   requireAdmin,
 } from "@/lib/admin";
+import { normalizeListingStatus } from "@/lib/listing-status";
 import { prisma } from "@/lib/prisma";
 
 export type ActionState = { ok: boolean; error?: string; message?: string } | null;
@@ -182,7 +183,7 @@ function listingPayload(formData: FormData) {
 
   return {
     type: type === "lodge" ? "lodge" : "guide",
-    status: status === "published" ? "published" : "draft",
+    status: normalizeListingStatus(status, "draft"),
     name: readString(formData, "name"),
     slug: readString(formData, "slug"),
     tagline: readString(formData, "tagline") || null,

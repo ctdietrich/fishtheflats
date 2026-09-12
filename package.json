@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "prisma db seed",
+    "import:listings": "tsx scripts/import-listings.ts",
     "db:deploy": "prisma migrate deploy",
     "postinstall": "prisma generate"
   },

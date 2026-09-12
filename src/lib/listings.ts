@@ -1,4 +1,5 @@
 import type { Destination, Listing, Prisma } from "@prisma/client";
+import { publishedListingWhere } from "./listing-status";
 import { prisma } from "./prisma";
 
 export type ListingWithDestinations = Listing & {
@@ -29,7 +30,7 @@ export function listingCover(listing: Pick<Listing, "photos">) {
   return asStringArray(listing.photos)[0] ?? null;
 }
 
-const published = { status: "published" };
+const published = publishedListingWhere;
 
 export async function getPublishedListings(filters?: {
   type?: string;
@@ -122,7 +123,7 @@ export async function getPublishedOpenings() {
 
 export async function getClaimableListings() {
   return prisma.listing.findMany({
-    where: { claimable: true, status: "published" },
+    where: { claimable: true, ...published },
     orderBy: { name: "asc" },
     select: { id: true, name: true, type: true, slug: true },
   });
