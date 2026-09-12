@@ -23,7 +23,7 @@ export function BrandLockup({
           alt="fishtheflats.com"
           width={910}
           height={487}
-          className={compact ? "h-16 w-auto" : "h-24 w-auto md:h-28"}
+          className="h-auto w-[240px] max-w-full md:w-[300px]"
           unoptimized
         />
         {showTagline ? (
@@ -36,23 +36,23 @@ export function BrandLockup({
   }
 
   return (
-    <span className={`flex items-center ${compact ? "gap-3" : "gap-4"}`}>
+    <span className={`flex items-center ${compact ? "gap-2.5" : "gap-3"}`}>
       <Image
         src="/brand/icon.webp"
         alt=""
         width={512}
         height={512}
-        className={compact ? "h-11 w-11 md:h-12 md:w-12" : "h-14 w-14"}
+        className={compact ? "h-10 w-10 md:h-11 md:w-11" : "h-12 w-12"}
         unoptimized
         priority={compact}
       />
       <span className="flex min-w-0 flex-col">
         <Image
-          src="/brand/wordmark-lockup.webp"
+          src="/brand/wordmark-type.webp"
           alt="fishtheflats.com"
-          width={1000}
-          height={214}
-          className={compact ? "h-8 w-auto sm:h-9 md:h-10" : "h-11 w-auto md:h-12"}
+          width={525}
+          height={80}
+          className={compact ? "h-6 w-auto md:h-7" : "h-8 w-auto"}
           unoptimized
           priority={compact}
         />
