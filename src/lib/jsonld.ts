@@ -46,5 +46,7 @@ export function organizationJsonLd() {
     name: site.name,
     url: site.url,
     description: site.description,
+    logo: absoluteUrl("/brand/icon.svg"),
+    slogan: site.brandTagline,
   };
 }

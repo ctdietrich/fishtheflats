@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #0b1f2e;
-  --navy-deep: #07151f;
-  --navy-soft: #163044;
-  --sand: #e8d9c0;
-  --sand-light: #f6f0e6;
-  --sea: #6fa39a;
-  --sea-deep: #3d6e68;
-  --foam: #f7f4ee;
-  --ink: #1c2430;
-  --muted: #5c6570;
+  --navy: #0b1f33;
+  --navy-deep: #061018;
+  --navy-soft: #173044;
+  --sand: #c4b59a;
+  --sand-light: #e8dfd0;
+  --sea: #4f7a7a;
+  --sea-deep: #3a5f5f;
+  --foam: #f3ede2;
+  --ink: #0b1f33;
+  --muted: #5e6b70;
+  --paper: #fff8f0;
 }
 
 @theme inline {
@@ -24,6 +25,8 @@
   --color-foam: var(--foam);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
+  --color-paper: var(--paper);
+  --color-white: var(--paper);
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
 }
@@ -45,7 +48,11 @@ h3,
   font-family: var(--font-display), ui-serif, Georgia, serif;
 }
 
+a {
+  text-underline-offset: 0.18em;
+}
+
 ::selection {
-  background: color-mix(in srgb, var(--sea) 45%, white);
+  background: color-mix(in srgb, var(--sea) 40%, white);
   color: var(--navy-deep);
 }

@@ -32,6 +32,7 @@ export const site = {
   domain: "fishtheflats.com",
   url: resolveSiteUrl(),
   tagline: "The directory for saltwater fly fishing guides and lodges.",
+  brandTagline: "Saltwater lives differently",
   description:
     "A curated two-sided directory of independent saltwater fly fishing guides and premium lodges — for affluent anglers, travel agents, clubs, and corporate trips.",
   listingTypes: [

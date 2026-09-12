@@ -1,0 +1,51 @@
+import Image from "next/image";
+import { site } from "@/lib/config";
+
+type BrandLockupProps = {
+  tone?: "light" | "dark";
+  size?: "header" | "footer";
+  showTagline?: boolean;
+};
+
+export function BrandLockup({
+  tone = "light",
+  size = "header",
+  showTagline = true,
+}: BrandLockupProps) {
+  const onDark = tone === "dark";
+  const compact = size === "header";
+
+  return (
+    <span className={`flex items-center ${compact ? "gap-3" : "gap-4"}`}>
+      <Image
+        src="/brand/icon.svg"
+        alt=""
+        width={compact ? 44 : 56}
+        height={compact ? 44 : 56}
+        className={compact ? "h-11 w-11" : "h-14 w-14"}
+        unoptimized
+        priority={compact}
+      />
+      <span className="flex min-w-0 flex-col">
+        <span
+          className={`font-display whitespace-nowrap leading-none tracking-tight ${
+            compact ? "text-[1.65rem] md:text-[1.85rem]" : "text-3xl md:text-4xl"
+          }`}
+        >
+          <span className={onDark ? "text-sand" : "text-sea"}>fish</span>
+          <span className={onDark ? "text-sand-light" : "text-navy"}>the</span>
+          <span className={onDark ? "text-sand" : "text-sea"}>flats.com</span>
+        </span>
+        {showTagline ? (
+          <span
+            className={`mt-1.5 text-[0.62rem] uppercase tracking-[0.22em] md:tracking-[0.28em] ${
+              onDark ? "text-sand/70" : "text-sea"
+            }`}
+          >
+            {site.brandTagline}
+          </span>
+        ) : null}
+      </span>
+    </span>
+  );
+}

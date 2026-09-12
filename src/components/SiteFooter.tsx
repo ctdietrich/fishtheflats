@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLockup } from "@/components/BrandLockup";
 import { site } from "@/lib/config";
 
 export function SiteFooter() {
@@ -6,8 +7,10 @@ export function SiteFooter() {
     <footer className="mt-auto border-t border-navy/10 bg-navy text-sand-light">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <p className="font-display text-3xl">{site.name}</p>
-          <p className="mt-3 max-w-md text-sm leading-6 text-sand/80">
+          <Link href="/" aria-label="FishTheFlats home">
+            <BrandLockup tone="dark" size="footer" />
+          </Link>
+          <p className="mt-4 max-w-md text-sm leading-6 text-sand/80">
             A two-sided directory for independent saltwater fly fishing guides and
             premium lodges. Built for anglers, travel agents, clubs, and corporate trips.
           </p>

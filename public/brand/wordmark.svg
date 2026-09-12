@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 360" role="img" aria-label="fishtheflats.com">
+  <g fill="none" stroke="#0B1F33" stroke-linecap="round" stroke-linejoin="round" transform="translate(150 4)">
+    <!-- body -->
+    <path
+      stroke-width="3.2"
+      d="M78 108
+         C 92 74 128 54 172 50
+         C 236 44 318 54 400 64
+         C 468 72 530 72 572 58
+         C 548 88 548 128 572 158
+         C 530 146 468 146 400 154
+         C 318 164 236 170 176 166
+         C 132 163 94 144 78 108 Z"
+    />
+    <!-- upper tail -->
+    <path stroke-width="3.2" d="M572 58 C 620 28 678 14 738 10 C 690 58 660 78 628 90"/>
+    <!-- lower tail -->
+    <path stroke-width="3.2" d="M572 158 C 620 188 678 202 738 206 C 690 158 660 138 628 126"/>
+    <!-- tail hinge -->
+    <path stroke-width="2.4" d="M572 58 C 588 88 588 128 572 158"/>
+    <!-- dorsal -->
+    <path stroke-width="2.6" d="M338 56 C 360 18 410 12 448 34 C 422 46 384 54 348 58"/>
+    <!-- anal -->
+    <path stroke-width="2.4" d="M430 160 C 452 188 488 192 512 172 C 488 164 460 160 438 158"/>
+    <!-- pectoral -->
+    <path stroke-width="2.4" d="M214 138 C 236 158 228 186 206 198"/>
+    <!-- pelvic -->
+    <path stroke-width="2.3" d="M318 162 C 338 180 332 198 314 206"/>
+    <!-- gill -->
+    <path stroke-width="2.4" d="M176 72 C 202 94 202 136 176 154"/>
+    <!-- mouth -->
+    <path stroke-width="2.4" d="M78 108 C 62 100 46 90 36 80 C 54 102 66 114 80 118"/>
+    <!-- scales -->
+    <path stroke-width="1.5" d="M250 86c22 6 44 6 66-4M268 102c24 6 48 6 70-4M286 118c24 6 48 5 68-5M320 78c20 5 40 4 58-4M338 94c22 5 44 5 62-4M356 110c22 5 42 4 58-4M390 72c18 4 34 3 48-4M408 88c18 4 36 4 50-3"/>
+    <circle cx="138" cy="90" r="9" fill="#0B1F33" stroke="#0B1F33"/>
+    <circle cx="141" cy="87.4" r="2.5" fill="#F3EDE2" stroke="none"/>
+    <path stroke="#4F7A7A" stroke-width="2.3" d="M10 150 C 160 166 360 160 560 128"/>
+    <path stroke="#4F7A7A" stroke-width="1.7" d="M40 166 C 190 180 380 172 570 144"/>
+  </g>
+  <text
+    x="550"
+    y="318"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', Times, serif"
+    font-size="78"
+    letter-spacing="-1.4"
+  >
+    <tspan fill="#4F7A7A">fish</tspan><tspan fill="#0B1F33">the</tspan><tspan fill="#4F7A7A">flats.com</tspan>
+  </text>
+</svg>
