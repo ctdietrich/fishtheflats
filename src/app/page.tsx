@@ -36,9 +36,9 @@ export default async function HomePage() {
               <Image
                 src="/brand/wordmark.png"
                 alt="fishtheflats.com"
-                width={1400}
-                height={868}
-                className="h-auto w-full max-w-md md:max-w-lg"
+                width={1606}
+                height={668}
+                className="h-auto w-full max-w-[16rem] object-contain sm:max-w-xs md:max-w-sm"
                 priority
                 unoptimized
               />
