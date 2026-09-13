@@ -31,14 +31,14 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/40 via-navy/50 to-navy-deep" />
         <div className="relative mx-auto max-w-6xl px-5 py-24 md:py-32">
           <p className="text-xs uppercase tracking-[0.28em] text-sea">{site.brandTagline}</p>
-          <h1 className="mt-5 max-w-xl">
-            <span className="inline-flex rounded-3xl bg-cream/95 px-5 py-4 md:px-7 md:py-5">
+          <h1 className="mt-5 max-w-xl leading-none">
+            <span className="inline-flex overflow-visible rounded-3xl bg-cream/95 px-5 py-4 leading-none md:px-7 md:py-5">
               <Image
                 src="/brand/wordmark.png"
                 alt="fishtheflats.com"
                 width={2352}
                 height={812}
-                className="h-auto w-full max-w-[16rem] object-contain sm:max-w-xs md:max-w-sm"
+                className="block h-auto w-full max-w-[16rem] object-contain sm:max-w-xs md:max-w-sm"
                 priority
                 unoptimized
               />
