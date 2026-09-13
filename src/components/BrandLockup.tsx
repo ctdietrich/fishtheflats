@@ -33,7 +33,7 @@ export function BrandLockup({
           alt=""
           width={512}
           height={512}
-          className="h-9 w-9 shrink-0 md:h-10 md:w-10"
+          className="h-9 w-9 shrink-0 object-contain md:h-10 md:w-10"
           unoptimized
           priority
         />
@@ -41,8 +41,8 @@ export function BrandLockup({
           <Image
             src="/brand/wordmark-type.png"
             alt="fishtheflats.com"
-            width={1606}
-            height={228}
+            width={2352}
+            height={372}
             className="h-5 w-auto max-w-[11rem] object-contain object-left sm:h-6 sm:max-w-[14rem] md:h-7 md:max-w-[16rem]"
             unoptimized
             priority
@@ -57,8 +57,8 @@ export function BrandLockup({
     <Image
       src="/brand/wordmark.png"
       alt="fishtheflats.com"
-      width={1606}
-      height={668}
+      width={2352}
+      height={812}
       className="h-16 w-auto max-w-[14rem] object-contain md:h-20 md:max-w-[18rem]"
       unoptimized
     />
